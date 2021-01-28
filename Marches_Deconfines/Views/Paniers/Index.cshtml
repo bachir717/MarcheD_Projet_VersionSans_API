@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Marches_Deconfines.Panier>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.prixArticle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Article.libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commande.lieuLaivraison)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.prixArticle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Article.libelle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Commande.lieuLaivraison)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.panierId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.panierId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.panierId })
+        </td>
+    </tr>
+}
+
+</table>

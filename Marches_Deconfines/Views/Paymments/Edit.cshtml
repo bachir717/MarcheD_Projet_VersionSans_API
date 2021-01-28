@@ -1,0 +1,82 @@
+﻿@model Marches_Deconfines.Paymment
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Paymment</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.paymmentId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.datePaymment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.datePaymment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.datePaymment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.numCompte, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.numCompte, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.numCompte, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.telACommercant, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telACommercant, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telACommercant, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.telUtilisateur, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.telUtilisateur, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.telUtilisateur, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.utilisateurId, "utilisateurId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("utilisateurId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.utilisateurId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.commandeId, "commandeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("commandeId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.commandeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Marches_Deconfines.Article>
+
+@{
+    ViewBag.Title = "ListArticle";
+    if (Session["nom"] == null)
+    {
+        Response.Redirect("~/Utilisateurs/Connexion_client");
+    }
+}
+
+<h2>Produits sur le marché</h2>
+
+<div class="d-flex flex-row bd-highlight mb-4>
+    <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div class="col-md-8" style="width: 300px;margin-left:10px;display: inline-block">
+                        <img style="height: 200px; width: 100%; display: block;" src="@Html.DisplayFor(modelItem => item.photo)" alt="Card image">
+
+                        <p class="card-text">prix:</p>
+
+                        <p class="card-text">Descreption:</p>
+
+                        <p class="card-text">Etat</p>
+
+                        <div class="text-center">
+                            <div class="card-body">
+                                @*<input type="Submit" class="btn btn-sm btn-warning" value="Ajouter au panier" />*@
+                                @*<button class="btn btn-sm btn-warning"> @Html.ActionLink("Ajouter au panier", "AjoutPanier", "Articles", new { id = item.articleId }) </button>*@
+                                <a href="@Url.Action("AjoutPanier","Articles",new { id=item.articleId})">
+                                    <input type="button" class="btn btn-sm btn-warning" value="Ajouter au panier" />
+                                </a>
+                                <br><br>
+                                <label>Qunatité</label>
+                                <input type="number" name="quantity" id="" value="1" min="1" max="10" />
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div> @Html.ActionLink("Déconnexion", "logoutClient", "Utilisateurs")</div>
+
+
+

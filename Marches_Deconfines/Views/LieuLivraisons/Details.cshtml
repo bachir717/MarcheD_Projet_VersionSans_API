@@ -1,0 +1,50 @@
+﻿@model Marches_Deconfines.LieuLivraison
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LieuLivraison</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pointderegroupement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pointderegroupement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Arrondissement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arrondissement)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.lieuLivraisonId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

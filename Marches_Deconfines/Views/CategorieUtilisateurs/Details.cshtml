@@ -1,0 +1,42 @@
+﻿@model Marches_Deconfines.CategorieUtilisateur
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CategorieUtilisateur</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategorieUtilisateurId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategorieUtilisateurId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorie.libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

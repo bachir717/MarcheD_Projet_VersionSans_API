@@ -1,0 +1,50 @@
+﻿@model Marches_Deconfines.Panier
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Panier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.prixArticle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prixArticle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Article.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Article.libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commande.lieuLaivraison)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commande.lieuLaivraison)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.panierId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,66 @@
+﻿@model Marches_Deconfines.Commande
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Commande</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.dateCommande)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCommande)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateLaivraison)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateLaivraison)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lieuLaivraison)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lieuLaivraison)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categorieId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categorieId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LieuLivraison.Pointderegroupement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LieuLivraison.Pointderegroupement)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.commandeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

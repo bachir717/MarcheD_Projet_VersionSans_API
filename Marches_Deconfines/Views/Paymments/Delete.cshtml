@@ -1,0 +1,72 @@
+﻿@model Marches_Deconfines.Paymment
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Paymment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.datePaymment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datePaymment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numCompte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numCompte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telACommercant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telACommercant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telUtilisateur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telUtilisateur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commande.lieuLaivraison)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commande.lieuLaivraison)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.nom)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

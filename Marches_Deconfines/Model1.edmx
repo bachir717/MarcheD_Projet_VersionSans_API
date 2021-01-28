@@ -1,0 +1,855 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MarcheD14Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="articleId" />
+          </Key>
+          <Property Name="articleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="50" />
+          <Property Name="Prix" Type="int" />
+          <Property Name="cantite" Type="int" />
+          <Property Name="articleDescreption" Type="varchar" MaxLength="100" />
+          <Property Name="etat" Type="varchar" MaxLength="50" />
+          <Property Name="photo" Type="varchar" MaxLength="1000" />
+          <Property Name="categorieId" Type="int" />
+          <Property Name="utilisateurid" Type="int" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="categorieId" />
+          </Key>
+          <Property Name="categorieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle" Type="varchar" MaxLength="50" />
+          <Property Name="photo" Type="varchar" MaxLength="1000" />
+          <Property Name="Nom" Type="varchar" MaxLength="100" />
+          <Property Name="discription" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="CategorieUtilisateur">
+          <Key>
+            <PropertyRef Name="utilisateurId" />
+            <PropertyRef Name="categorieId" />
+          </Key>
+          <Property Name="CategorieUtilisateurId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="utilisateurId" Type="int" Nullable="false" />
+          <Property Name="categorieId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Commande">
+          <Key>
+            <PropertyRef Name="commandeId" />
+          </Key>
+          <Property Name="commandeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateCommande" Type="date" />
+          <Property Name="dateLaivraison" Type="datetime" />
+          <Property Name="lieuLaivraison" Type="varchar" MaxLength="200" />
+          <Property Name="categorieId" Type="int" />
+          <Property Name="utilisateurId" Type="int" />
+          <Property Name="lieuLivraisonId" Type="int" />
+        </EntityType>
+        <EntityType Name="LieuLivraison">
+          <Key>
+            <PropertyRef Name="lieuLivraisonId" />
+          </Key>
+          <Property Name="lieuLivraisonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pointderegroupement" Type="varchar" MaxLength="100" />
+          <Property Name="Ville" Type="varchar" MaxLength="100" />
+          <Property Name="Ad" Type="varchar" MaxLength="100" />
+          <Property Name="Arrondissement" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Panier">
+          <Key>
+            <PropertyRef Name="panierId" />
+          </Key>
+          <Property Name="panierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prixArticle" Type="float" />
+          <Property Name="cantite" Type="int" />
+          <Property Name="commandeId" Type="int" />
+          <Property Name="articleId" Type="int" />
+        </EntityType>
+        <EntityType Name="Paymment">
+          <Key>
+            <PropertyRef Name="paymmentId" />
+          </Key>
+          <Property Name="paymmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datePaymment" Type="date" />
+          <Property Name="numCompte" Type="varchar" MaxLength="50" />
+          <Property Name="telACommercant" Type="varchar" MaxLength="10" />
+          <Property Name="telUtilisateur" Type="varchar" MaxLength="10" />
+          <Property Name="utilisateurId" Type="int" />
+          <Property Name="commandeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="photoId" />
+          </Key>
+          <Property Name="photoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="chemin" Type="varchar" MaxLength="1000" />
+          <Property Name="articleId" Type="int" />
+        </EntityType>
+        <EntityType Name="Sms">
+          <Key>
+            <PropertyRef Name="smsid" />
+          </Key>
+          <Property Name="smsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SommeVerse" Type="float" />
+          <Property Name="cantite" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="utilisateurId" />
+          </Key>
+          <Property Name="utilisateurId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="50" />
+          <Property Name="prenom" Type="varchar" MaxLength="50" />
+          <Property Name="adresse" Type="varchar" MaxLength="100" />
+          <Property Name="tel" Type="varchar" MaxLength="10" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="loginUser" Type="varchar" MaxLength="50" />
+          <Property Name="mdpUser" Type="varchar" MaxLength="50" />
+          <Property Name="userRole" Type="int" />
+          <Property Name="typeprivilege" Type="int" />
+          <Property Name="descriptionUser" Type="varchar" MaxLength="50" />
+          <Property Name="siren" Type="varchar" MaxLength="50" />
+          <Property Name="ville" Type="varchar" MaxLength="100" />
+          <Property Name="arrondissement" Type="varchar" MaxLength="100" />
+          <Property Name="smsid" Type="int" />
+        </EntityType>
+        <Association Name="Articl_Photo_FK">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="articleId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Article_Panier_FK">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Panier" Type="Self.Panier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="articleId" />
+            </Principal>
+            <Dependent Role="Panier">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Categorie_Articl_FK">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="categorieId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="categorieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Commande_Panier_FK">
+          <End Role="Commande" Type="Self.Commande" Multiplicity="0..1" />
+          <End Role="Panier" Type="Self.Panier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commande">
+              <PropertyRef Name="commandeId" />
+            </Principal>
+            <Dependent Role="Panier">
+              <PropertyRef Name="commandeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Commande_Paymment_FK">
+          <End Role="Commande" Type="Self.Commande" Multiplicity="0..1" />
+          <End Role="Paymment" Type="Self.Paymment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commande">
+              <PropertyRef Name="commandeId" />
+            </Principal>
+            <Dependent Role="Paymment">
+              <PropertyRef Name="commandeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Categorie">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+          <End Role="CategorieUtilisateur" Type="Self.CategorieUtilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="categorieId" />
+            </Principal>
+            <Dependent Role="CategorieUtilisateur">
+              <PropertyRef Name="categorieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="CategorieUtilisateur" Type="Self.CategorieUtilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Principal>
+            <Dependent Role="CategorieUtilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LieuLivraisonId_Commande_FK">
+          <End Role="LieuLivraison" Type="Self.LieuLivraison" Multiplicity="0..1" />
+          <End Role="Commande" Type="Self.Commande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LieuLivraison">
+              <PropertyRef Name="lieuLivraisonId" />
+            </Principal>
+            <Dependent Role="Commande">
+              <PropertyRef Name="lieuLivraisonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Sms_Utilisateur_FK">
+          <End Role="Sms" Type="Self.Sms" Multiplicity="0..1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sms">
+              <PropertyRef Name="smsid" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="smsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Utilisateur_Articl_FK">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="utilisateurid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Utilisateur_Commande_FK">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Commande" Type="Self.Commande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Principal>
+            <Dependent Role="Commande">
+              <PropertyRef Name="utilisateurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Utilisateur_Paymment_FK">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Paymment" Type="Self.Paymment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Principal>
+            <Dependent Role="Paymment">
+              <PropertyRef Name="utilisateurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarcheD14ModelStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categorie" EntityType="Self.Categorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategorieUtilisateur" EntityType="Self.CategorieUtilisateur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Commande" EntityType="Self.Commande" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LieuLivraison" EntityType="Self.LieuLivraison" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Panier" EntityType="Self.Panier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paymment" EntityType="Self.Paymment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sms" EntityType="Self.Sms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Articl_Photo_FK" Association="Self.Articl_Photo_FK">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="Article_Panier_FK" Association="Self.Article_Panier_FK">
+            <End Role="Article" EntitySet="Article" />
+            <End Role="Panier" EntitySet="Panier" />
+          </AssociationSet>
+          <AssociationSet Name="Categorie_Articl_FK" Association="Self.Categorie_Articl_FK">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="Commande_Panier_FK" Association="Self.Commande_Panier_FK">
+            <End Role="Commande" EntitySet="Commande" />
+            <End Role="Panier" EntitySet="Panier" />
+          </AssociationSet>
+          <AssociationSet Name="Commande_Paymment_FK" Association="Self.Commande_Paymment_FK">
+            <End Role="Commande" EntitySet="Commande" />
+            <End Role="Paymment" EntitySet="Paymment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Categorie" Association="Self.FK_Categorie">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="CategorieUtilisateur" EntitySet="CategorieUtilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur" Association="Self.FK_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="CategorieUtilisateur" EntitySet="CategorieUtilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="LieuLivraisonId_Commande_FK" Association="Self.LieuLivraisonId_Commande_FK">
+            <End Role="LieuLivraison" EntitySet="LieuLivraison" />
+            <End Role="Commande" EntitySet="Commande" />
+          </AssociationSet>
+          <AssociationSet Name="Sms_Utilisateur_FK" Association="Self.Sms_Utilisateur_FK">
+            <End Role="Sms" EntitySet="Sms" />
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+          </AssociationSet>
+          <AssociationSet Name="Utilisateur_Articl_FK" Association="Self.Utilisateur_Articl_FK">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Article" EntitySet="Article" />
+          </AssociationSet>
+          <AssociationSet Name="Utilisateur_Commande_FK" Association="Self.Utilisateur_Commande_FK">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Commande" EntitySet="Commande" />
+          </AssociationSet>
+          <AssociationSet Name="Utilisateur_Paymment_FK" Association="Self.Utilisateur_Paymment_FK">
+            <End Role="Utilisateur" EntitySet="Utilisateur" />
+            <End Role="Paymment" EntitySet="Paymment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MarcheD14Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="articleId" />
+          </Key>
+          <Property Name="articleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Prix" Type="Int32" />
+          <Property Name="cantite" Type="Int32" />
+          <Property Name="articleDescreption" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="etat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="photo" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="categorieId" Type="Int32" />
+          <Property Name="utilisateurid" Type="Int32" />
+          <NavigationProperty Name="Photos" Relationship="Self.Articl_Photo_FK" FromRole="Article" ToRole="Photo" />
+          <NavigationProperty Name="Paniers" Relationship="Self.Article_Panier_FK" FromRole="Article" ToRole="Panier" />
+          <NavigationProperty Name="Categorie" Relationship="Self.Categorie_Articl_FK" FromRole="Article" ToRole="Categorie" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.Utilisateur_Articl_FK" FromRole="Article" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="categorieId" />
+          </Key>
+          <Property Name="categorieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="photo" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Nom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="discription" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Articles" Relationship="Self.Categorie_Articl_FK" FromRole="Categorie" ToRole="Article" />
+          <NavigationProperty Name="CategorieUtilisateurs" Relationship="Self.FK_Categorie" FromRole="Categorie" ToRole="CategorieUtilisateur" />
+        </EntityType>
+        <EntityType Name="CategorieUtilisateur">
+          <Key>
+            <PropertyRef Name="utilisateurId" />
+            <PropertyRef Name="categorieId" />
+          </Key>
+          <Property Name="CategorieUtilisateurId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="utilisateurId" Type="Int32" Nullable="false" />
+          <Property Name="categorieId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categorie" Relationship="Self.FK_Categorie" FromRole="CategorieUtilisateur" ToRole="Categorie" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.FK_Utilisateur" FromRole="CategorieUtilisateur" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Commande">
+          <Key>
+            <PropertyRef Name="commandeId" />
+          </Key>
+          <Property Name="commandeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateCommande" Type="DateTime" Precision="0" />
+          <Property Name="dateLaivraison" Type="DateTime" Precision="3" />
+          <Property Name="lieuLaivraison" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="categorieId" Type="Int32" />
+          <Property Name="utilisateurId" Type="Int32" />
+          <Property Name="lieuLivraisonId" Type="Int32" />
+          <NavigationProperty Name="Paniers" Relationship="Self.Commande_Panier_FK" FromRole="Commande" ToRole="Panier" />
+          <NavigationProperty Name="Paymments" Relationship="Self.Commande_Paymment_FK" FromRole="Commande" ToRole="Paymment" />
+          <NavigationProperty Name="LieuLivraison" Relationship="Self.LieuLivraisonId_Commande_FK" FromRole="Commande" ToRole="LieuLivraison" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.Utilisateur_Commande_FK" FromRole="Commande" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="LieuLivraison">
+          <Key>
+            <PropertyRef Name="lieuLivraisonId" />
+          </Key>
+          <Property Name="lieuLivraisonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pointderegroupement" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ville" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Arrondissement" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Commandes" Relationship="Self.LieuLivraisonId_Commande_FK" FromRole="LieuLivraison" ToRole="Commande" />
+        </EntityType>
+        <EntityType Name="Panier">
+          <Key>
+            <PropertyRef Name="panierId" />
+          </Key>
+          <Property Name="panierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prixArticle" Type="Double" />
+          <Property Name="cantite" Type="Int32" />
+          <Property Name="commandeId" Type="Int32" />
+          <Property Name="articleId" Type="Int32" />
+          <NavigationProperty Name="Article" Relationship="Self.Article_Panier_FK" FromRole="Panier" ToRole="Article" />
+          <NavigationProperty Name="Commande" Relationship="Self.Commande_Panier_FK" FromRole="Panier" ToRole="Commande" />
+        </EntityType>
+        <EntityType Name="Paymment">
+          <Key>
+            <PropertyRef Name="paymmentId" />
+          </Key>
+          <Property Name="paymmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datePaymment" Type="DateTime" Precision="0" />
+          <Property Name="numCompte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telACommercant" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="telUtilisateur" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="utilisateurId" Type="Int32" />
+          <Property Name="commandeId" Type="Int32" />
+          <NavigationProperty Name="Commande" Relationship="Self.Commande_Paymment_FK" FromRole="Paymment" ToRole="Commande" />
+          <NavigationProperty Name="Utilisateur" Relationship="Self.Utilisateur_Paymment_FK" FromRole="Paymment" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="photoId" />
+          </Key>
+          <Property Name="photoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="chemin" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="articleId" Type="Int32" />
+          <NavigationProperty Name="Article" Relationship="Self.Articl_Photo_FK" FromRole="Photo" ToRole="Article" />
+        </EntityType>
+        <EntityType Name="Sm">
+          <Key>
+            <PropertyRef Name="smsid" />
+          </Key>
+          <Property Name="smsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SommeVerse" Type="Double" />
+          <Property Name="cantite" Type="Int32" />
+          <NavigationProperty Name="Utilisateurs" Relationship="Self.Sms_Utilisateur_FK" FromRole="Sms" ToRole="Utilisateur" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="utilisateurId" />
+          </Key>
+          <Property Name="utilisateurId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="loginUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mdpUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userRole" Type="Int32" />
+          <Property Name="typeprivilege" Type="Int32" />
+          <Property Name="descriptionUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="siren" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ville" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="arrondissement" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="smsid" Type="Int32" />
+          <NavigationProperty Name="Articles" Relationship="Self.Utilisateur_Articl_FK" FromRole="Utilisateur" ToRole="Article" />
+          <NavigationProperty Name="CategorieUtilisateurs" Relationship="Self.FK_Utilisateur" FromRole="Utilisateur" ToRole="CategorieUtilisateur" />
+          <NavigationProperty Name="Commandes" Relationship="Self.Utilisateur_Commande_FK" FromRole="Utilisateur" ToRole="Commande" />
+          <NavigationProperty Name="Paymments" Relationship="Self.Utilisateur_Paymment_FK" FromRole="Utilisateur" ToRole="Paymment" />
+          <NavigationProperty Name="Sm" Relationship="Self.Sms_Utilisateur_FK" FromRole="Utilisateur" ToRole="Sms" />
+        </EntityType>
+        <Association Name="Articl_Photo_FK">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="articleId" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Article_Panier_FK">
+          <End Role="Article" Type="Self.Article" Multiplicity="0..1" />
+          <End Role="Panier" Type="Self.Panier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Article">
+              <PropertyRef Name="articleId" />
+            </Principal>
+            <Dependent Role="Panier">
+              <PropertyRef Name="articleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Categorie_Articl_FK">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="categorieId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="categorieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Utilisateur_Articl_FK">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Article" Type="Self.Article" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Principal>
+            <Dependent Role="Article">
+              <PropertyRef Name="utilisateurid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Categorie">
+          <End Role="Categorie" Type="Self.Categorie" Multiplicity="1" />
+          <End Role="CategorieUtilisateur" Type="Self.CategorieUtilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="categorieId" />
+            </Principal>
+            <Dependent Role="CategorieUtilisateur">
+              <PropertyRef Name="categorieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Utilisateur">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="1" />
+          <End Role="CategorieUtilisateur" Type="Self.CategorieUtilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Principal>
+            <Dependent Role="CategorieUtilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Commande_Panier_FK">
+          <End Role="Commande" Type="Self.Commande" Multiplicity="0..1" />
+          <End Role="Panier" Type="Self.Panier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commande">
+              <PropertyRef Name="commandeId" />
+            </Principal>
+            <Dependent Role="Panier">
+              <PropertyRef Name="commandeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Commande_Paymment_FK">
+          <End Role="Commande" Type="Self.Commande" Multiplicity="0..1" />
+          <End Role="Paymment" Type="Self.Paymment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Commande">
+              <PropertyRef Name="commandeId" />
+            </Principal>
+            <Dependent Role="Paymment">
+              <PropertyRef Name="commandeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LieuLivraisonId_Commande_FK">
+          <End Role="LieuLivraison" Type="Self.LieuLivraison" Multiplicity="0..1" />
+          <End Role="Commande" Type="Self.Commande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LieuLivraison">
+              <PropertyRef Name="lieuLivraisonId" />
+            </Principal>
+            <Dependent Role="Commande">
+              <PropertyRef Name="lieuLivraisonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Utilisateur_Commande_FK">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Commande" Type="Self.Commande" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Principal>
+            <Dependent Role="Commande">
+              <PropertyRef Name="utilisateurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Utilisateur_Paymment_FK">
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="0..1" />
+          <End Role="Paymment" Type="Self.Paymment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Utilisateur">
+              <PropertyRef Name="utilisateurId" />
+            </Principal>
+            <Dependent Role="Paymment">
+              <PropertyRef Name="utilisateurId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Sms_Utilisateur_FK">
+          <End Role="Sms" Type="Self.Sm" Multiplicity="0..1" />
+          <End Role="Utilisateur" Type="Self.Utilisateur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sms">
+              <PropertyRef Name="smsid" />
+            </Principal>
+            <Dependent Role="Utilisateur">
+              <PropertyRef Name="smsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MarcheD14Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Articles" EntityType="Self.Article" />
+          <EntitySet Name="Categories" EntityType="Self.Categorie" />
+          <EntitySet Name="CategorieUtilisateurs" EntityType="Self.CategorieUtilisateur" />
+          <EntitySet Name="Commandes" EntityType="Self.Commande" />
+          <EntitySet Name="LieuLivraisons" EntityType="Self.LieuLivraison" />
+          <EntitySet Name="Paniers" EntityType="Self.Panier" />
+          <EntitySet Name="Paymments" EntityType="Self.Paymment" />
+          <EntitySet Name="Photos" EntityType="Self.Photo" />
+          <EntitySet Name="Sms" EntityType="Self.Sm" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateur" />
+          <AssociationSet Name="Articl_Photo_FK" Association="Self.Articl_Photo_FK">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Photo" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="Article_Panier_FK" Association="Self.Article_Panier_FK">
+            <End Role="Article" EntitySet="Articles" />
+            <End Role="Panier" EntitySet="Paniers" />
+          </AssociationSet>
+          <AssociationSet Name="Categorie_Articl_FK" Association="Self.Categorie_Articl_FK">
+            <End Role="Categorie" EntitySet="Categories" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="Utilisateur_Articl_FK" Association="Self.Utilisateur_Articl_FK">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Article" EntitySet="Articles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Categorie" Association="Self.FK_Categorie">
+            <End Role="Categorie" EntitySet="Categories" />
+            <End Role="CategorieUtilisateur" EntitySet="CategorieUtilisateurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Utilisateur" Association="Self.FK_Utilisateur">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="CategorieUtilisateur" EntitySet="CategorieUtilisateurs" />
+          </AssociationSet>
+          <AssociationSet Name="Commande_Panier_FK" Association="Self.Commande_Panier_FK">
+            <End Role="Commande" EntitySet="Commandes" />
+            <End Role="Panier" EntitySet="Paniers" />
+          </AssociationSet>
+          <AssociationSet Name="Commande_Paymment_FK" Association="Self.Commande_Paymment_FK">
+            <End Role="Commande" EntitySet="Commandes" />
+            <End Role="Paymment" EntitySet="Paymments" />
+          </AssociationSet>
+          <AssociationSet Name="LieuLivraisonId_Commande_FK" Association="Self.LieuLivraisonId_Commande_FK">
+            <End Role="LieuLivraison" EntitySet="LieuLivraisons" />
+            <End Role="Commande" EntitySet="Commandes" />
+          </AssociationSet>
+          <AssociationSet Name="Utilisateur_Commande_FK" Association="Self.Utilisateur_Commande_FK">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Commande" EntitySet="Commandes" />
+          </AssociationSet>
+          <AssociationSet Name="Utilisateur_Paymment_FK" Association="Self.Utilisateur_Paymment_FK">
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+            <End Role="Paymment" EntitySet="Paymments" />
+          </AssociationSet>
+          <AssociationSet Name="Sms_Utilisateur_FK" Association="Self.Sms_Utilisateur_FK">
+            <End Role="Sms" EntitySet="Sms" />
+            <End Role="Utilisateur" EntitySet="Utilisateurs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MarcheD14ModelStoreContainer" CdmEntityContainer="MarcheD14Entities">
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="MarcheD14Model.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="articleId" ColumnName="articleId" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="cantite" ColumnName="cantite" />
+                <ScalarProperty Name="articleDescreption" ColumnName="articleDescreption" />
+                <ScalarProperty Name="etat" ColumnName="etat" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="categorieId" ColumnName="categorieId" />
+                <ScalarProperty Name="utilisateurid" ColumnName="utilisateurid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="MarcheD14Model.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
+                <ScalarProperty Name="categorieId" ColumnName="categorieId" />
+                <ScalarProperty Name="libelle" ColumnName="libelle" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="discription" ColumnName="discription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CategorieUtilisateurs">
+            <EntityTypeMapping TypeName="MarcheD14Model.CategorieUtilisateur">
+              <MappingFragment StoreEntitySet="CategorieUtilisateur">
+                <ScalarProperty Name="CategorieUtilisateurId" ColumnName="CategorieUtilisateurId" />
+                <ScalarProperty Name="utilisateurId" ColumnName="utilisateurId" />
+                <ScalarProperty Name="categorieId" ColumnName="categorieId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Commandes">
+            <EntityTypeMapping TypeName="MarcheD14Model.Commande">
+              <MappingFragment StoreEntitySet="Commande">
+                <ScalarProperty Name="commandeId" ColumnName="commandeId" />
+                <ScalarProperty Name="dateCommande" ColumnName="dateCommande" />
+                <ScalarProperty Name="dateLaivraison" ColumnName="dateLaivraison" />
+                <ScalarProperty Name="lieuLaivraison" ColumnName="lieuLaivraison" />
+                <ScalarProperty Name="categorieId" ColumnName="categorieId" />
+                <ScalarProperty Name="utilisateurId" ColumnName="utilisateurId" />
+                <ScalarProperty Name="lieuLivraisonId" ColumnName="lieuLivraisonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LieuLivraisons">
+            <EntityTypeMapping TypeName="MarcheD14Model.LieuLivraison">
+              <MappingFragment StoreEntitySet="LieuLivraison">
+                <ScalarProperty Name="lieuLivraisonId" ColumnName="lieuLivraisonId" />
+                <ScalarProperty Name="Pointderegroupement" ColumnName="Pointderegroupement" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="Arrondissement" ColumnName="Arrondissement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paniers">
+            <EntityTypeMapping TypeName="MarcheD14Model.Panier">
+              <MappingFragment StoreEntitySet="Panier">
+                <ScalarProperty Name="panierId" ColumnName="panierId" />
+                <ScalarProperty Name="prixArticle" ColumnName="prixArticle" />
+                <ScalarProperty Name="cantite" ColumnName="cantite" />
+                <ScalarProperty Name="commandeId" ColumnName="commandeId" />
+                <ScalarProperty Name="articleId" ColumnName="articleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paymments">
+            <EntityTypeMapping TypeName="MarcheD14Model.Paymment">
+              <MappingFragment StoreEntitySet="Paymment">
+                <ScalarProperty Name="paymmentId" ColumnName="paymmentId" />
+                <ScalarProperty Name="datePaymment" ColumnName="datePaymment" />
+                <ScalarProperty Name="numCompte" ColumnName="numCompte" />
+                <ScalarProperty Name="telACommercant" ColumnName="telACommercant" />
+                <ScalarProperty Name="telUtilisateur" ColumnName="telUtilisateur" />
+                <ScalarProperty Name="utilisateurId" ColumnName="utilisateurId" />
+                <ScalarProperty Name="commandeId" ColumnName="commandeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photos">
+            <EntityTypeMapping TypeName="MarcheD14Model.Photo">
+              <MappingFragment StoreEntitySet="Photo">
+                <ScalarProperty Name="photoId" ColumnName="photoId" />
+                <ScalarProperty Name="chemin" ColumnName="chemin" />
+                <ScalarProperty Name="articleId" ColumnName="articleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sms">
+            <EntityTypeMapping TypeName="MarcheD14Model.Sm">
+              <MappingFragment StoreEntitySet="Sms">
+                <ScalarProperty Name="smsid" ColumnName="smsid" />
+                <ScalarProperty Name="SommeVerse" ColumnName="SommeVerse" />
+                <ScalarProperty Name="cantite" ColumnName="cantite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MarcheD14Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateurs">
+            <EntityTypeMapping TypeName="MarcheD14Model.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="utilisateurId" ColumnName="utilisateurId" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="loginUser" ColumnName="loginUser" />
+                <ScalarProperty Name="mdpUser" ColumnName="mdpUser" />
+                <ScalarProperty Name="userRole" ColumnName="userRole" />
+                <ScalarProperty Name="typeprivilege" ColumnName="typeprivilege" />
+                <ScalarProperty Name="descriptionUser" ColumnName="descriptionUser" />
+                <ScalarProperty Name="siren" ColumnName="siren" />
+                <ScalarProperty Name="ville" ColumnName="ville" />
+                <ScalarProperty Name="arrondissement" ColumnName="arrondissement" />
+                <ScalarProperty Name="smsid" ColumnName="smsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,66 @@
+﻿@model Marches_Deconfines.Paymment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Paymment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.datePaymment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datePaymment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numCompte)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numCompte)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telACommercant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telACommercant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telUtilisateur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telUtilisateur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Commande.lieuLaivraison)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Commande.lieuLaivraison)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.paymmentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

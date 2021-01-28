@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Marches_Deconfines.Utilisateur>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.loginUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mdpUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userRole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typeprivilege)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descriptionUser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.siren)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ville)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.arrondissement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sm.smsid)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.loginUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mdpUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userRole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typeprivilege)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descriptionUser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.siren)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ville)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.arrondissement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sm.smsid)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.utilisateurId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.utilisateurId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.utilisateurId })
+        </td>
+    </tr>
+}
+
+</table>

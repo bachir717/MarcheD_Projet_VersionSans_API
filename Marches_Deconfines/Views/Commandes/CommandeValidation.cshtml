@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Marches_Deconfines.Commande>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Validation de votre commande</h2>
+
+
+@*<select class="mdb-select md-form" aria-labelledby="dropdownMenuButton">
+        <option value="" disabled selected>
+            Selectionez votre modes de livraison
+        </option>
+        <option value="1" id="SurPlace">Sur Place</option>
+        <option value="2">A votre domicile</option>
+        <option value="3">Point de regroupement</option>
+        <option value="4">Chez votre voisin</option>
+    </select>*@
+<div class="col-md-12">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <button type="button" class="btn-success" id="id1">Sur Place</button> |
+        <button type="button" class="btn-success" id="id2">A votre domicile</button> |
+        <button type="button" class="btn-success" id="id3">Point de regroupement</button> |
+        <button type="button" class="btn-success" id="id4">Chez votre voisin</button>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div> @Html.ActionLink("Retour", "Panier", "Paniers")</div>
+@section Scripts {
+    <script type='text/javascript'>
+        $(function () {
+            $("#id1").on('click', function () {
+                $("#l1").hide();
+            });
+            $("#id2").on('click', function () {
+                $("#l2").toggle();
+            });
+            $("#id3").on('click', function () {
+                $("#l1").hide();
+            });
+            $("#id4").on('click', function () {
+                $("#l2").toggle();
+            });
+        });
+
+    </script>
+}
+
+
+
+
+

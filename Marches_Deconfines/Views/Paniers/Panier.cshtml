@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Marches_Deconfines.Panier>
+
+@{
+    ViewBag.Title = "Panier";
+}
+
+<h2>Panier</h2>
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Produit</th>
+                            <th scope="col" class="text-center">Quantité</th>
+                            <th scope="col" class="text-right">Prix</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model){
+                        <tr>
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td>Product Name Dada</td>
+                            <td><input class="form-control" type="text" value=" @Html.DisplayFor(modelItem => item.cantite)" /></td>
+                            <td class="text-right">@Html.DisplayFor(modelItem => item.prixArticle) €</td>
+                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                        </tr>
+                        }
+                    
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total</strong></td>
+                            <td class="text-right"><strong>@Html.Countprice()</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    <button class="btn btn-block btn-light">@Html.ActionLink("Continuer vos achats", "ListArticleUtilisateur", "Articles")</button>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <a href="../Commandes/CommandeValidation"><button class="btn btn-lg btn-block btn-success text-uppercase">confirmer</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div> @Html.ActionLink("Retour", "ListArticleUtilisateur", "Articles")</div>

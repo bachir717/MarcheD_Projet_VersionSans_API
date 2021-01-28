@@ -1,0 +1,88 @@
+﻿@model Marches_Deconfines.Article
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prix)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.articleDescreption)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.articleDescreption)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.etat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.etat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categorie.libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categorie.libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Utilisateur.nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Utilisateur.nom)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
